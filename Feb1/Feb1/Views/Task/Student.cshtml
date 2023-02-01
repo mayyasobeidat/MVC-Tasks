@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Student";
+}
+
+<h2>Student</h2>
+
+<table class="table table-hover table-bordered table-responsive">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Major</th>
+        <th>Faculity</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Major</td>
+            <td>@item.Faculity</td>
+
+        </tr>
+      
+
+    }
+</table>
+
