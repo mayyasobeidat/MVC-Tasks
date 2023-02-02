@@ -1,0 +1,82 @@
+﻿@model Feb_2.Models.Information
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            First Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.First_Name)
+        </dd>
+
+        <dt>
+            Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Name)
+        </dd>
+
+        <dt>
+            E-mail
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_mail)
+        </dd>
+
+        <dt>
+            Phone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            Age
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            Job Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job_Title)
+        </dd>
+
+        <dt>
+            Gender
+        </dt>
+
+        <dd>
+            @if (Model.Gender == true)
+            {
+                <span>Female</span>
+            }
+            else
+            {
+                <span>Male</span>
+            }
+            @*@Html.DisplayFor(model => model.Gender)*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

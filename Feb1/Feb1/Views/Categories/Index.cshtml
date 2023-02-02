@@ -7,15 +7,18 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="/Categories/Create">Create New</a>
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table table-bordered table-hover table-responsive">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
+            Category Name
+            @*@Html.DisplayNameFor(model => model.CategoryName)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
+            @*@Html.DisplayNameFor(model => model.Description)*@
         </th>
         <th></th>
     </tr>
@@ -23,16 +26,23 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
+            <span>@item.CategoryName</span>
+            @*@Html.DisplayFor(modelItem => item.CategoryName)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            <span>@item.Description</span>
+            @*@Html.DisplayFor(modelItem => item.Description)*@
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryID })
+            <a href="/Categories/Edit/@item.CategoryID">Edit</a> |
+            <a href="/Categories/Details/@item.CategoryID">Details</a> |
+            <a href="/Categories/Delete/@item.CategoryID">Delete</a>
         </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
+        </td>*@
     </tr>
 }
 
