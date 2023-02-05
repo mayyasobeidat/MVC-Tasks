@@ -4,6 +4,8 @@
     <EntitySetMapping Name="Information">
       <EntityTypeMapping TypeName="MVCModel.Information">
         <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="CV" ColumnName="CV" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Job_Title" ColumnName="Job_Title" />
           <ScalarProperty Name="Age" ColumnName="Age" />

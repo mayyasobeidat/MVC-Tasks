@@ -25,17 +25,18 @@ namespace Feb_2.Models
         [Required(ErrorMessage = "The E-mail field is required.")]
         [EmailAddress]
         public string E_mail { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The Phone field is required.")]
         [RegularExpression(@"^(07)[7-9]{1}[0-9]{7}$", ErrorMessage = "Please enter Jordan PhoneNumber")]
         public string Phone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The Age field is required.")]
         [Range(18, 50)]
         public Nullable<int> Age { get; set; }
         [Required(ErrorMessage = "The Job Title field is required.")]
         [StringLength(10, ErrorMessage = "The Job Title must be between {2} - {1} characters long.", MinimumLength = 2)]
-
         public string Job_Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The Gender field is required.")]
         public Nullable<bool> Gender { get; set; }
+        public string Image { get; set; }
+        public string CV { get; set; }
     }
 }

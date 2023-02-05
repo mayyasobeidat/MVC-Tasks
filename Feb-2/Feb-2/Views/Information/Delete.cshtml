@@ -74,6 +74,16 @@
             }
             @*@Html.DisplayFor(model => model.Gender)*@
         </dd>
+        <dd>
+            <img src="~/image/@Model.Image" width="100" />
+        </dd>
+        <dt>
+            CV
+        </dt>
+
+        <dd>
+            <a href="~/CVs/@Model.CV" download>Download CV</a>
+        </dd>
 
     </dl>
 

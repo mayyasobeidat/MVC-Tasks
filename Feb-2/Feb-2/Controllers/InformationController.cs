@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Feb_2.Models;
 
 namespace Feb_2.Controllers
@@ -19,6 +21,29 @@ namespace Feb_2.Controllers
         {
             return View(db.Information.ToList());
         }
+
+
+        public ActionResult Search(string search , string searchBut)
+        {
+            if (searchBut == "FirstName")
+            {
+                return View("Index", db.Information.Where(p => p.First_Name.Contains(search)).ToList());
+            }
+            else if (searchBut == "LastName")
+            {
+                return View("Index", db.Information.Where(p => p.Last_Name.Contains(search)).ToList());
+            }
+            else
+            {
+                return View("Index", db.Information.Where(p => p.E_mail.Contains(search)).ToList());
+            }
+        }
+
+
+
+
+
+
 
         // GET: Information/Details/5
         public ActionResult Details(int? id)
@@ -46,26 +71,56 @@ namespace Feb_2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,First_Name,Last_Name,E_mail,Phone,Age,Job_Title,Gender")] Information information)
+        public ActionResult Create([Bind(Include = "ID,First_Name,Last_Name,E_mail,Phone,Age,Job_Title,Gender,Image,CV")] Information information, HttpPostedFileBase image, HttpPostedFileBase cv)
         {
-            if (ModelState.IsValid)
-            {
-                db.Information.Add(information);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(information);
+           
+            if (ModelState.IsValid)
+                {
+
+                    string imgPath = "";
+                    string cvPath = "";
+                    if (image !=null)
+                    {
+                        imgPath = Path.GetFileName(image.FileName);
+                        image.SaveAs(Path.Combine(Server.MapPath("~/image/") + image.FileName));
+                    }
+
+             
+
+                    if (cv != null)
+                    {
+                        cvPath = Path.GetFileName(cv.FileName);
+                        cv.SaveAs(Path.Combine(Server.MapPath("~/CVs/") + cv.FileName));
+                    }
+
+
+                    information.Image = imgPath;
+                    information.CV = cvPath;
+
+                    db.Information.Add(information);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(information);
+            
         }
 
-        // GET: Information/Edit/5
-        public ActionResult Edit(int? id)
+            // GET: Information/Edit/5
+            public ActionResult Edit(int? id)
         {
+           
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Information information = db.Information.Find(id);
+
+            Session["IMG"] = information.Image;
+            Session["CV"] = information.CV;
+
             if (information == null)
             {
                 return HttpNotFound();
@@ -78,10 +133,37 @@ namespace Feb_2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,First_Name,Last_Name,E_mail,Phone,Age,Job_Title,Gender")] Information information)
+        public ActionResult Edit([Bind(Include = "ID,First_Name,Last_Name,E_mail,Phone,Age,Job_Title,Gender,Image,CV")] Information information, HttpPostedFileBase image, HttpPostedFileBase cv)
         {
+            information.Image = Session["IMG"].ToString();
+            information.CV = Session["CV"].ToString();
+
             if (ModelState.IsValid)
             {
+               
+
+
+                string imgPath = "";
+                string cvPath = "";
+                if (image != null)
+                {
+                    imgPath = Path.GetFileName(image.FileName);
+                    image.SaveAs(Path.Combine(Server.MapPath("~/image/") + image.FileName));
+               
+                information.Image = imgPath;
+                }
+
+                if (cv != null)
+                {
+                    cvPath = Path.GetFileName(cv.FileName);
+                    cv.SaveAs(Path.Combine(Server.MapPath("~/CVs/") + cv.FileName));
+
+                    information.CV = cvPath;
+                }
+
+
+               
+
                 db.Entry(information).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
