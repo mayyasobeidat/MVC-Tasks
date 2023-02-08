@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Feb8.Models.Information>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    a {
+        text-decoration: none;
+        font-size: larger
+    }
+
+    .deletA {
+        color: red;
+    }
+
+    .pos {
+        color: white;
+    }
+</style>
+
+<!-- Portfolio Grid-->
+<section class="page-section" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase text-white">Employee</h2>
+            <h3 class="section-heading text-white">
+                Click @Html.ActionLink("here", "Create") to add a new employee
+            </h3>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 1-->
+                    <div class="portfolio-item">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <div style="background-color:dimgray">
+                            &nbsp;
+                            @Html.ActionLink("✎", "Edit", new { id = item.ID }, new { @class = "pos" }) <span style="color:ghostwhite">|</span>
+                            @Html.ActionLink("⚠", "Details", new { id = item.ID }, new { @class = "pos" }) <span style="color:ghostwhite">|</span>
+                            @Html.ActionLink("✘", "Delete", new { id = item.ID }, new { @class = "deletA" })
+                        </div>
+                        <img class="img-fluid" src="~/image/@item.Image" alt="..." />
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading"> @item.First_Name @item.Last_Name </div>
+                            <div class="portfolio-caption-subheading text-muted"><a href="~/CVs/@item.CV" download>Download CV</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
