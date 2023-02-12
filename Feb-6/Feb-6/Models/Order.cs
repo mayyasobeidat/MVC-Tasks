@@ -11,11 +11,14 @@ namespace Feb_6.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Order
     {
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
+
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> OrderDate { get; set; }
     
         public virtual Information Information { get; set; }

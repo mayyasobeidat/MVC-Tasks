@@ -7,44 +7,64 @@
 <h2>Index</h2>
 
 
+<div class="row">
+    <div class="col-md-8">
+        @Html.Action("LastOrder")
 
-@Html.Action("LastOrder")
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("Search", "Information"))
+        {
+            <div>
+                <label>Search by :</label>
+                @Html.RadioButton("searchBut", "FirstName", true) First Name
+                @Html.RadioButton("searchBut", "LastName") Last Name
+                @Html.RadioButton("searchBut", "E_mail") E-mail
+
+
+                @Html.TextBox("search", "", new { @class = "form-control visible-lg-inline-block" })
+                <input type="submit" name="name" value="Search" class="btn btn-primary" />
+            </div>
+            <br />
+        }
+    </div>
+</div>
 
 
 
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="text-align:end;">
+    @Html.ActionLink("Create New", "Create" )
 </p>
-<table class="table">
-    <tr>
+<table class="table table-hover table-responsive table-striped table-bordered">
+    <tr class="info" style="text-align:center">
         <th>
-            @Html.DisplayNameFor(model => model.First_Name)
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Last_Name)
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.E_mail)
+            E-mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Age)
+            Age
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Job_Title)
+            Job Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gender)
+            CV
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Image)
+            Photo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CV)
+            Gender
         </th>
         <th></th>
     </tr>
@@ -71,18 +91,25 @@
                 @Html.DisplayFor(modelItem => item.Job_Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gender)
+                
+                <a href="..\CVs\@item.CV" download>Download CV</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                <img src="..\image\@item.Image" width="100" />
+
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CV)
+                @if (@item.Gender == true)
+                {
+                    <span>Female</span>
+                }
+                else
+                {<span>Male</span>}
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }

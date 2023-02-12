@@ -54,15 +54,15 @@ namespace Feb8
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "494517526190333",
+               appSecret: "62b4ecfacfd4391a9a816ee609468976");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "769357665794-5tda7cfahdm7l50q05mad8htn6pkr8jg.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

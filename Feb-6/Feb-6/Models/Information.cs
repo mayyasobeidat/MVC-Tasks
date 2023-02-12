@@ -11,7 +11,9 @@ namespace Feb_6.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+
     public partial class Information
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +21,27 @@ namespace Feb_6.Models
         {
             this.Orders = new HashSet<Order>();
         }
-    
+
         public int ID { get; set; }
+        [Required(ErrorMessage = "The First Name field is required.")]
+        [StringLength(12, ErrorMessage = "The First Name must be between {2} - {1} characters long.", MinimumLength = 2)]
         public string First_Name { get; set; }
+        [Required(ErrorMessage = "The Last Name field is required.")]
+        [StringLength(12, ErrorMessage = "The Last Name must be between {2} - {1} characters long.", MinimumLength = 2)]
         public string Last_Name { get; set; }
+        [Required(ErrorMessage = "The E-mail field is required.")]
+        [EmailAddress]
         public string E_mail { get; set; }
+        [Required(ErrorMessage = "The Phone field is required.")]
+        [RegularExpression(@"^(07)[7-9]{1}[0-9]{7}$", ErrorMessage = "Please enter Jordan PhoneNumber")]
         public string Phone { get; set; }
+        [Required(ErrorMessage = "The Age field is required.")]
+        [Range(18, 50)]
         public Nullable<int> Age { get; set; }
+        [Required(ErrorMessage = "The Job Title field is required.")]
+        [StringLength(10, ErrorMessage = "The Job Title must be between {2} - {1} characters long.", MinimumLength = 2)]
         public string Job_Title { get; set; }
+        [Required(ErrorMessage = "The Gender field is required.")]
         public Nullable<bool> Gender { get; set; }
         public string Image { get; set; }
         public string CV { get; set; }

@@ -5,38 +5,59 @@
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 
 }
+<style>
+    a {
+        text-decoration:none;
+        font-size:larger
+    }
+    .deletA{
+        color:red;
+    }
 
+    .pos {
+        color:white;
+    }
+</style>
 
 <!-- Portfolio Grid-->
 <section class="page-section" id="portfolio">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">Employee</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase text-white">Employee</h2>
+            <h3 class="section-heading text-white">
+                Click @Html.ActionLink("here", "Create") to add a new employee
+            </h3>
         </div>
         <div class="row">
             @foreach (var item in Model)
             {
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <!-- Portfolio item 1-->
-                <div class="portfolio-item">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 1-->
+                    <div class="portfolio-item">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
+                        <div style="background-color:dimgray">
+                            &nbsp;
+                            @Html.ActionLink("✎", "Edit", new { id = item.ID }, new { @class = "pos" }) <span style="color:ghostwhite">|</span>
+                            @Html.ActionLink("⚠", "Details", new { id = item.ID }, new { @class = "pos" }) <span style="color:ghostwhite">|</span>
+                            @Html.ActionLink("✘", "Delete", new { id = item.ID }, new { @class = "deletA" })
+                        </div>
                         <img class="img-fluid" src="~/image/@item.Image" alt="..." />
-                    </a>
-                    <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading"> @item.First_Name @item.Last_Name </div>
-                        <div class="portfolio-caption-subheading text-muted"><a href="~/CVs/@item.CV" download>Document</a></div>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading"> @item.First_Name @item.Last_Name </div>
+                            <div class="portfolio-caption-subheading text-muted"><a href="~/CVs/@item.CV" download>Download CV</a></div>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
 
+        </div>
+    </div>
+</section>
 
-
-@*<h2>Index</h2>
+@*<div class="container">
+    <h2>Index</h2>
 
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -73,41 +94,43 @@
             <th></th>
         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.First_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Last_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.E_mail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Job_Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CV)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.E_mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Job_Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CV)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
-    </table>*@
+    </table>
+</div>*@

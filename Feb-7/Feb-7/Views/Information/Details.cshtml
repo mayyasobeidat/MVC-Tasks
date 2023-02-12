@@ -3,88 +3,79 @@
 @{
     ViewBag.Title = "Details";
 }
+<style>
+    div {
+        color: darkgray
+    }
+</style>
+<section class="page-section" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase text-white">Employee</h2>
+            <h3 class="section-heading text-white">
+                Employee Details
+            </h3>
+        </div>
+        <div class="row flex-row">
+            <h4>Information</h4>
+            <hr />
 
-<h2>Details</h2>
+            
+            <div class="col-md-8">
+                <table class="table table-hover table-dark">
+                    <tr>
+                        <td>First Name</td>
+                        <td>@Html.DisplayFor(model => model.First_Name)</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>@Html.DisplayFor(model => model.Last_Name)</td>
+                    </tr>
+                    <tr>
+                        <td>E-mail</td>
+                        <td>@Html.DisplayFor(model => model.E_mail)</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>@Html.DisplayFor(model => model.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>@Html.DisplayFor(model => model.Age)</td>
+                    </tr>
+                    <tr>
+                        <td>Job Title</td>
+                        <td>@Html.DisplayFor(model => model.Job_Title)</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                            @if (Model.Gender == true)
+                            {
+                                <span>Female</span>
+                            }
+                            else
+                            {
+                                <span>Male</span>
+                            }
+                                            </td>
+                    </tr>
+                    <tr>
+                        <td>CV</td>
+                        <td><a href="~/CVs/@Model.CV" download>Download CV</a></td>
+                    </tr>
+                    <tr>
+                        <td>Photo</td>
+                        <td><img src="~/image/@Model.Image" width="100" /></td>
+                    </tr>
+              
+                </table>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) <br />
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+                </div>
+                </div>
+            </div>
 
-<div>
-    <h4>Information</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.First_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.First_Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Last_Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Last_Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.E_mail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.E_mail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Job_Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Job_Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CV)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CV)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</section>

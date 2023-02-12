@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.First_Name)
+            First Name
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Last_Name)
+            Last Name
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.E_mail)
+            E-mail
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Age)
+            Age
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Job_Title)
+            Job Title
         </dt>
 
         <dd>
@@ -59,29 +59,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Gender)
+            Gender
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @if (Model.Gender == true)
+            {
+                <span>Female</span>
+            }
+            else
+            {
+                <span>Male</span>
+            }
+            @*@Html.DisplayFor(model => model.Gender)*@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Image)
+            CV
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <a href="~/CVs/@Model.CV" download>Download CV</a>
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.CV)
+            Photo
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CV)
+            <img src="~/image/@Model.Image" width="100" />
         </dd>
-
     </dl>
 </div>
 <p>
