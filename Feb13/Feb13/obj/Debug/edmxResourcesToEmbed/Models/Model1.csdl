@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="ID_faculty" />
+    </Key>
+    <Property Name="ID_faculty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="facultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Majors" Relationship="Self.FK_Majors_Majors" FromRole="Faculties" ToRole="Majors" />
+  </EntityType>
+  <EntityType Name="Major">
+    <Key>
+      <PropertyRef Name="ID_major" />
+    </Key>
+    <Property Name="ID_major" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_faculty" Type="Int32" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK_Majors_Majors" FromRole="Majors" ToRole="Faculties" />
+    <Property Name="majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Majors_Majors">
+    <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Majors" Type="Self.Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="ID_faculty" />
+      </Principal>
+      <Dependent Role="Majors">
+        <PropertyRef Name="ID_faculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="APIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+    <EntitySet Name="Majors" EntityType="Self.Major" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Majors_Majors" Association="Self.FK_Majors_Majors">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Majors" EntitySet="Majors" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
